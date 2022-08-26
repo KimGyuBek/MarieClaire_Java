@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+div {
+  display: block;
+}
+
+ul {
+  display: block;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border-style: none;
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+
+#contents {
+  width: 1024px;
+  margin: 20px auto;
+}
+
+#boxed-wrapper #wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.slide-frame {
+  display: none;
+}
+
+#wrapper {
+  width: 100%;
+  max-width: none;
+  background-color: #ffffff;
+  overflow: visible;
+  padding-left: 40px auto;
+  padding-right: 40px auto;
+}
+
+.empty_blank {
+  height: 50px;
+}
+
+.empty_blank2 {
+  height: 70px;
+}
+
+.empty_blank3 {
+  height: 200px;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.sub_contents_img {
+  width: 50%;
+  margin-right: 15px;
+}
+
+.sub_contents_text {
+  width: 50%;
+  margin-left: 15px;
+  padding-left: 15px;
+}
+
+.sub_contents_text > h4 {
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.sub_contents_text > h2 {
+  font-size: 30px;
+}
+
+.sub_contents_text > p {
+  font-size: 16px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: #000000;
+}
+
+.view_main_title > h1 {
+  color: #4a4e57;
+  font-size: 32px;
+  margin: 40px 0px 0px;
+}
+
+.view_sub_title > h1 {
+  font-size: 1em;
+  font-weight: normal;
+  color: #cdcdcd;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.view_subject > h1 {
+  color: #4a4e57;
+  font-size: 16px;
+  margin: 16px 0px;
+}
+
+.empty_blank1 {
+  height: 25px;
+}
+
+.view_content,
+.view_subject {
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.view_content > p,
+.view_editor > p {
+  font-size: 16px;
+  text-align: center;
+  color: #4a4e57;
+  padding: 0px 0px 20px;
+  display: block;
+  line-height: 200%;
+}
+
+.view_editor > p {
+  font-weight: bold;
+}
