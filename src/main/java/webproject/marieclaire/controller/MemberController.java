@@ -49,14 +49,14 @@ public class MemberController {
         }
 
         MemberDto loginMember = memberService.login(memberDto.getUserId(), memberDto.getPwd());
-        log.info("memberDto={}", memberDto.toString());
+        log.info("memberDto={}", loginMember);
 
 //        Session 처리
         HttpSession session = request.getSession();
 
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-        redirectAttributes.addAttribute("login", true);
+//        redirectAttributes.addAttribute("login", true);
 
         return "redirect:/";
     }

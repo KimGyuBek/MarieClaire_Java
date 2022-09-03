@@ -11,3 +11,9 @@ public class MarieclaireApplication {
 	}
 
 }
+
+//TODO 관리자 페이지
+//TODO layout
+//TODO controller logic service로 옮기기
+//TODO redirection시 alert 구현
+//TODO id대신 uuid를 사용할까? (보안...?)

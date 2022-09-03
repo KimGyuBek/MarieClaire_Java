@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import webproject.marieclaire.SessionConst;
 import webproject.marieclaire.data.dto.MemberDto;
 import webproject.marieclaire.data.entity.Member;
 import webproject.marieclaire.data.repository.MemberRepository;
@@ -66,4 +67,39 @@ public class MemberServiceImpl implements MemberService {
 
         memberRepository.save(updateMember);
     }
+
+    /*id로 회원 조회*/
+    @Override
+    public Member findByUserId(String userId) {
+        Member member = memberRepository.findByUserId(userId).orElseGet(null);
+        log.info("member={}", member.toString());
+
+        return member;
+    }
+
+    /*MemberDto로 회원 조회*/
+    @Override
+    public boolean findBySession(HttpSession session) {
+
+        MemberDto memberDto = (MemberDto) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        if (memberDto == null) {
+            return false;
+        }
+
+        log.info("[findBySession] memberDto={}", memberDto.toString());
+
+        Member member = memberRepository.findByUserId(memberDto.getUserId()).orElseGet(null);
+
+        if (member != null) {
+            log.info("[findBySession] member is exist!");
+            return true;
+        }
+
+        return false;
+//        throw new IllegalStateException("[session] 존재하지 않는 회원 정보");
+
+//        TODO 에외처리
+
+    }
+
 }

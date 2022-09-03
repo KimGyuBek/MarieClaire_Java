@@ -28,6 +28,7 @@
               </li>
               <li>
                 <a href="/board/board_form.php?id=user1"
+                   th:href="@{/board/post}"
                    th:if="${session.loginMember != null}"><span class="menu-text">글쓰기</span></a>
               </li>
               <li>
@@ -103,28 +104,32 @@
             <ul id="main-menu-navigation" class="main-menu">
               <li class="menu-item">
                 <a href=""
-                   th:href="@{/board-list/fashion}"
+                   th:href="@{/board/list/fashion}"
                    class="main-menu-link"
                    style="height: 50px;">
                   <span class="menu-text">FASHION</span></a>
               </li>
               <li class="menu-item">
                 <a href="/board/board_list.php?dtable=beauty" class="main-menu-link"
+                   th:href="@{/board/list/beauty}"
                    style="height: 50px;">
                   <span class="menu-text">BEAUTY</span></a>
               </li>
               <li class="menu-item">
                 <a href="/board/board_list.php?dtable=celeb" class="main-menu-link"
+                   th:href="@{/board/list/celeb}"
                    style="height: 50px;">
                   <span class="menu-text">CELEB</span></a>
               </li>
               <li class="menu-item">
                 <a href="/board/board_list.php?dtable=culture" class="main-menu-link"
+                   th:href="@{/board/list/culture}"
                    style="height: 50px;">
                   <span class="menu-text">CULTURE</span></a>
               </li>
               <li class="menu-item">
                 <a href="/board/board_list.php?dtable=life" class="main-menu-link"
+                   th:href="@{/board/list/life}"
                    style="height: 50px;">
                   <span class="menu-text">LIFE</span></a>
               </li>

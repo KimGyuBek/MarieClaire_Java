@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/commonHead :: common_head(~{::title})">
+  <title>MARIECLAIREKOREA - topic </title>
+</head>
+
+<body>
+<div id="boxed-wrapper" style="height:auto;">
+  <div class="slide-frame"></div>
+  <div id="wrapper" class="fusion-wrapper">
+    <div class="home" style="position: relative;top:-1px"></div>
+
+    <!-- header start -->
+    <header th:replace="fragment/header :: header"/>
+    <!-- header end -->
+
+    <!--    contents start-->
+    <div id="contents">
+
+      <!-- sub_contents -->
+      <div class="sub_contents">
+
+        <!-- page view -->
+        <div class="page_view aligncenter" th:object="${boardForm}">
+
+          <!-- main_title -->
+          <div class="view_main_title">
+            <h1 th:text="*{mainTitle}">mainTitle</h1>
+          </div>
+          <!-- main_title end -->
+
+          <!-- sub_title -->
+          <div class="view_sub_title">
+            <h1 th:text="*{subTitle}">subTitle</h1>
+          </div>
+          <!-- sub_title end -->
+
+          <div class="empty_blank1"></div>
+
+          <!-- subject -->
+          <div class="view_subject">
+            <h1 th:text="*{subject}">subject</h1>
+          </div>
+          <!-- subject end -->
+
+          <div class="empty_blank1"></div>
+
+          <!-- sns -->
+          <div class="view_sns">
+            <img src="/img/common/view_sns.png" alt="" style="width: 250px; height:50px;">
+          </div>
+          <!-- sns end -->
+
+          <div class="empty_blank2"></div>
+
+          <!-- img -->
+          <div class="view_img">
+            <img src="" th:src="|/images/*{uploadFile.getStoreFileName()}|" alt="">
+          </div>
+          <!-- img end -->
+
+          <div class="empty_blank2"></div>
+
+          <!-- content -->
+          <div class="view_content">
+            <p style="white-space: pre-line;" th:text="*{contents}">
+              contents
+            </p>
+          </div>
+          <!-- content end -->
+
+          <div class="empty_blank2"></div>
+
+          <!-- editor -->
+          <div class="view_editor">
+            <p th:text="|*{editor.userName} 'editor'|">
+              editor
+              <br>
+              reference marieclairekorea.com
+              <br>
+              <?= $row['regist_day'] ?>
+            </p>
+          </div>
+          <!-- editor end -->
+
+        </div>
+
+        <div class="empty_blank2"></div>
+
+<!--        edit button-->
+        <span>
+          <button class="etc_btn" type="button" onclick="" th:onclick="|location.href='@{/board/edit(id=${boardForm.boardId})}'|">수정</button>
+        </span>
+<!--        edit button end-->
+
+<!--        delete btn start-->
+        <span>
+          <button class="etc_btn" type="button" onclick="" th:onclick="|location.href='@{/board/delete(id=${boardForm.boardId})}'|">삭제</button>
+
+        </span>
+<!--        delete btn end-->
+
+
+        <div class="empty_blank"></div>
+
+
+        <div class="empty_blank"></div>
+
+      </div>
+    </div>
+  </div>
+  <!-- wrapper end -->
+
+</div>
+<!--contents end-->
+
+
+<!-- footer start -->
+<footer th:replace="fragment/footer :: footer"/>
+<!-- footer end -->
+
+</body>
+
+</html>

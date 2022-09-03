@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/commonHead :: common_head(~{::title})">
+  <title>MARIECLAIREKOREA - topic </title>
+</head>
+
+<body>
+<div id="boxed-wrapper" style="height:auto;">
+  <div class="slide-frame"></div>
+  <div id="wrapper" class="fusion-wrapper">
+    <div class="home" style="position: relative;top:-1px"></div>
+
+    <!-- header start -->
+    <header th:replace="fragment/header :: header"/>
+    <!-- header end -->
+
+    <!--    contents start-->
+    <div id="contents">
+
+      <!-- sub_contents -->
+      <div class="sub_contents">
+
+
+        <!-- title area -->
+        <div class="title_area">
+
+          <!-- login title  -->
+          <div id="member_title" class="fusion-row aligncenter">
+                            <span>
+                                <h1>글수정</h1>
+                            </span>
+            <!-- login title end -->
+          </div>
+
+        </div>
+        <!-- title area end -->
+
+        <!-- table wrap -->
+        <div class="table_wrap">
+
+          <!-- member form  -->
+          <form name="memFrm" method="POST"
+                action="" th:object="${boardForm}" enctype="multipart/form-data">
+            <!--              <input type="hidden" name="id" value="<?= $id ?>">-->
+            <!--              TODO input id-->
+            <input type="hidden" th:field="*{boardId}">
+            <input type="hidden" th:field="*{editor.userId}">
+            <input type="hidden" th:field="*{editor.pwd}">
+            <input type="hidden" th:field="*{editor.userEmail}">
+
+            <!-- member table -->
+            <table class="table_list2 form" style="text-align:left;">
+              <tbody>
+
+              <!-- select -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  게시판
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <select th:field="*{topic}">
+                    <option value="">====게시판 선택====</option>
+                    <option th:each="topic : ${topics}" th:value="${topic.code}"
+                            th:text="${topic.displayName}">게시판 선택
+                    </option>
+                  </select>
+                </td>
+              </tr>
+              <!-- select end -->
+
+              <!-- editor -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  작성자
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input type="text" id="uid" name="name" value="<?= $name ?>"
+                         class="margin_right large" placeholder="영문, 숫자로만 6-20자" maxlength="50"
+                         style="background-color: rgb(235, 235, 235);" required readonly
+                         th:field="*{editor.userName}" >
+                </td>
+              </tr>
+              <!-- editor end -->
+
+              <!-- main_title -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  메인 제목
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input type="text" id="uid" name="main_title" value="" placeholder="100자 이내"
+                         class="margin_right large" maxlength="100"
+                         style="background-color: rgb(235, 235, 235);" required
+                         th:field="*{mainTitle}">
+                </td>
+              </tr>
+              <!-- main_title ned -->
+
+              <!-- sub_title -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  부제목
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input type="text" id="uid" name="sub_title" value="" placeholder="100자 이내"
+                         class="margin_right large" maxlength="100"
+                         style="background-color: rgb(235, 235, 235);" required
+                         th:field="*{subTitle}">
+                </td>
+              </tr>
+              <!-- sub_title end -->
+
+              <!-- subject -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  타이틀
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input type="text" id="uid" name="subject" value="" placeholder="100자 이내"
+                         class="margin_right large" maxlength="100"
+                         style="background-color: rgb(235, 235, 235);" required
+                         th:field="*{subject}">
+                </td>
+              </tr>
+              <!-- subject end -->
+
+              <!-- content -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  내용
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <textarea name="content" id="uid" style="background-color: rgb(235, 235, 235); height:700px;"
+                            required th:field="*{contents}"></textarea>
+                </td>
+              </tr>
+              <!-- contents end -->
+
+              <!--fileUpload start -->
+              <tr>
+                <th>
+                  <span class="point2">*</span>
+                  첨부파일
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input type="file" id="uid" style="background-color: rgb(235, 235, 235);"
+                            required th:field="*{multipartFile}"></input>
+                </td>
+              </tr>
+              <!-- fileUpload end -->
+
+              <!-- submit btn -->
+              <tr>
+                <th>
+                  <span class="point2"></span>
+                </th>
+              </tr>
+              <tr>
+                <td class="join_id">
+                  <input class="login_btn" type="submit" value="등록" onclick="">
+                </td>
+              </tr>
+              <!-- submit btn end -->
+
+              </tbody>
+
+            </table>
+            <!-- form table end -->
+
+          </form>
+          <!-- form end -->
+
+        </div>
+        <!-- table wrap end -->
+
+      </div>
+
+
+      <div class="empty_blank"></div>
+
+    </div>
+  </div>
+</div>
+<!-- wrapper end -->
+
+</div>
+<!--contents end-->
+
+
+<!-- footer start -->
+<footer th:replace="fragment/footer :: footer"/>
+<!-- footer end -->
+
+</body>
+
+</html>

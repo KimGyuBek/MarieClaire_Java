@@ -1,9 +1,12 @@
 package webproject.marieclaire.data.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +17,6 @@ import webproject.marieclaire.data.dto.MemberDto;
 @Table(name = "member")
 @Getter
 @Setter
-@ToString
 public class Member {
 
     @Id
@@ -29,6 +31,9 @@ public class Member {
     private String userName;
 
     private String userEmail;
+
+    @OneToMany(mappedBy = "member")
+    private List<Fashion> boardList = new ArrayList<>();
 
 //    private int userLevel;
 

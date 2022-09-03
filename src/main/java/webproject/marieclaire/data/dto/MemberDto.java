@@ -1,6 +1,8 @@
 package webproject.marieclaire.data.dto;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,6 +32,7 @@ public class MemberDto {
     @Email
     private String userEmail;
 
+
     public MemberDto() {
 
     }
@@ -42,5 +45,10 @@ public class MemberDto {
         this.userEmail = member.getUserEmail();
     }
 
-
+    public MemberDto( String userId, String pwd, String userName, String userEmail) {
+        this.userId = userId;
+        this.pwd = pwd;
+        this.userName = userName;
+        this.userEmail = userEmail;
+    }
 }

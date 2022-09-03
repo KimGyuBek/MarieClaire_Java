@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/commonHead :: common_head(~{::title})">
+  <title>MARIECLAIREKOREA - topic </title>
+</head>
+
+<body>
+<div id="boxed-wrapper" style="height:auto;">
+  <div class="slide-frame"></div>
+  <div id="wrapper" class="fusion-wrapper">
+    <div class="home" style="position: relative;top:-1px"></div>
+
+    <!-- header start -->
+    <header th:replace="fragment/header :: header"/>
+    <!-- header end -->
+
+    <!--    contents start-->
+    <div id="contents">
+
+      <!-- sub_contents -->
+      <div class="sub_contents">
+
+
+        <!-- post_layout2 start -->
+        <div th:replace="layout/layout :: post_layout2">post2</div>
+        <!-- post_layout2 end -->
+
+        <div class="empty_blank"></div>
+
+
+        <div class="empty_blank"></div>
+
+      </div>
+    </div>
+  </div>
+  <!-- wrapper end -->
+
+</div>
+<!--contents end-->
+
+
+<!-- footer start -->
+<footer th:replace="fragment/footer :: footer"/>
+<!-- footer end -->
+
+</body>
+
+</html>
