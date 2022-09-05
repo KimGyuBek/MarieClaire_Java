@@ -38,13 +38,15 @@ public class BoardServiceImpl implements BoardService {
     /*upload*/
     @Transactional
     @Override
-    public void upload(BoardDto boardDto) {
+    public Long upload(BoardDto boardDto) {
 
         Board board = convertToEntity(boardDto);
         board.setMember(memberService.findByUserId(boardDto.getEditor().getUserId()));
         log.info("board={}", board.toString());
 
         boardRepository.save(board);
+
+        return board.getId();
     }
 
     /*board list*/

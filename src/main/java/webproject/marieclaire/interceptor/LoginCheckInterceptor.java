@@ -18,7 +18,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         this.memberService = memberService;
     }
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
         Object handler) throws Exception {
@@ -28,9 +27,9 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         HttpSession session = request.getSession();
 
-        boolean isSession = memberService.findBySession(session);
+        boolean sessionMember = memberService.findBySession(session);
 
-        if (session == null || isSession == false) {
+        if (session == null || sessionMember == false) {
             response.sendRedirect("/member/login");
 
             log.info("[LoginCheckInterceptor] 미인증 사용자 요청");

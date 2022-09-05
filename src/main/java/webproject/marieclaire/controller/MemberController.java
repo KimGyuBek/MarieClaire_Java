@@ -75,6 +75,7 @@ public class MemberController {
     public String updateForm(HttpServletRequest request, Model model) {
 
         MemberDto member = (MemberDto) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+
         log.info("[edit] member={}", member.toString());
 
         model.addAttribute("memberForm", member);
@@ -102,7 +103,7 @@ public class MemberController {
     }
 
     /*회원가입*/
-    @PostMapping("join")
+    @PostMapping("/join")
     public String join(@Validated @ModelAttribute("joinForm") MemberDto memberDto,
         BindingResult bindingResult,
         RedirectAttributes redirectAttributes) {

@@ -30,7 +30,6 @@ public abstract class Board {
     @Column(name = "board_id")
     private Long id;
 
-
     private String mainTitle;
 
     private String subTitle;

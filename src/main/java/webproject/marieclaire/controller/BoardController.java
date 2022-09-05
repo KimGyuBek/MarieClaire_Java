@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import webproject.marieclaire.SessionConst;
 import webproject.marieclaire.data.dto.BoardDto;
@@ -56,16 +55,24 @@ public class BoardController {
     }
 
 
+    /**
+     * 게시글 리스트
+     */
     /*게시글 리스트*/
     @GetMapping("/list/{topic}")
     public String boardList(@PathVariable("topic") String topic, Model model) {
         log.info("[boardList] topic={}", topic);
         List<BoardDto> boardForms = boardService.findAll();
         model.addAttribute("boardForms", boardForms);
+        log.info("[boardList] boardForms={}", boardForms);
 
         return "board/board_list";
     }
 
+
+    /**
+     * 게시글 업로드
+     */
     /*boardForm */
     @GetMapping("/post")
     public String boardForm(@ModelAttribute("boardForm") BoardDto boardDto,
@@ -79,11 +86,11 @@ public class BoardController {
     }
 
     /*게시글 업로드*/
-    @ResponseBody
     @PostMapping("/post")
     public String upload(@ModelAttribute("boardForm") BoardDto boardDto) {
 
 //        upload 시간 설정
+//        TODO controller에서 말고 service나 business logic을 사용하는게 좋을 듯
         boardDto.setUploadTime(LocalDateTime.now());
 
         UploadFile uploadFile = fileStore.storeFile(boardDto.getMultipartFile());
@@ -91,15 +98,20 @@ public class BoardController {
 
         log.info("[post]boardDto={}", boardDto.toString());
 
-        boardService.upload(boardDto);
+        Long uploadId = boardService.upload(boardDto);
+//        TODO boardID를 return 해줘야겠다
 
-        return "ok";
-
+        return "redirect:/board/view?id=" + uploadId;
     }
 
+
+    /**
+     * 게시글 view
+     */
     /*board_view*/
     @GetMapping("/view")
     public String boardViewForm(@RequestParam("id") Long id, Model model) {
+//        TODO boadrId 경로를 pathVariable로 바꾸는게 좋을수도
         BoardDto boardDto = boardService.findById(id);
         log.info("[boardController] boardDto={}", boardDto);
 
@@ -108,6 +120,10 @@ public class BoardController {
         return "board/board_view";
     }
 
+
+    /**
+     * 게시글 수정
+     */
     /*boardForm_edit*/
     @GetMapping("/edit")
     public String editForm(@RequestParam("id") Long id, Model model) {
@@ -118,7 +134,7 @@ public class BoardController {
         return "board/boardForm_edit";
     }
 
-    /*update board*/
+    /*게시글 update*/
     @PostMapping("/edit")
     public String edit(@ModelAttribute("boardForm") BoardDto boardDto,
         RedirectAttributes redirectAttributes) {
@@ -136,6 +152,10 @@ public class BoardController {
 
     }
 
+
+    /**
+     * 게시글 삭제
+     */
     /*게시글 삭제*/
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {

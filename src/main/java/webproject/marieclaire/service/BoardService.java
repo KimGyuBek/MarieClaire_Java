@@ -3,13 +3,12 @@ package webproject.marieclaire.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import webproject.marieclaire.data.dto.BoardDto;
-import webproject.marieclaire.data.repository.BoardRepository;
 
 @Service
 public interface BoardService {
 
     /*게시글 업로드*/
-    public void upload(BoardDto boardDto);
+    public Long upload(BoardDto boardDto);
 
 
     /*board list*/

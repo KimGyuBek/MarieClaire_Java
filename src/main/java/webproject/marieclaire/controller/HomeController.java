@@ -32,8 +32,7 @@ public class HomeController {
     @RequestMapping("/")
     public String home() {
 
-//        TODO
-
+//        TODO home.html 백업본 로딩
         return "home_copy";
     }
 
