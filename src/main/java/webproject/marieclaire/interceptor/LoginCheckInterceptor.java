@@ -2,7 +2,6 @@ package webproject.marieclaire.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,17 +24,24 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 //        log.info("[loginCheckInterceptor]");
 
         String requestURI = request.getRequestURI();
-        HttpSession session = request.getSession();
+//        log.info("[loginCheckInterceptor] requestUr={}", requestURI);
 
-        boolean sessionMember = memberService.findBySession(session);
+        boolean sessionMember = memberService.findBySession(request.getSession());
 
-        if (session == null || sessionMember == false) {
-            response.sendRedirect("/member/login");
+        if (request.getSession() == null || sessionMember == false) {
+            response.sendRedirect("/member/login?redirect=" + requestURI);
 
             log.info("[LoginCheckInterceptor] 미인증 사용자 요청");
             return false;
         }
 
+//        memberCheck
+//        ModelAndView modelAndView = new ModelAndView(request.getRequestURI());
+//        modelAndView.addObject("memberCheck", true);
+
+        log.info("[loginInterceptor] 인증된 사용자");
+
         return true;
     }
+
 }

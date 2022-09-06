@@ -15,24 +15,24 @@
           <!-- second menu start -->
           <nav class="second-menu">
             <ul>
-              <li th:if="${loginAuthentication}">
+              <li th:if="${session.loginMember != null}">
                 <a href=""><span class="menu-text" th:text="|${session.loginMember.userName}님|">userName님</span></a>
               </li>
               <li>
-                <a href="" th:if="${loginAuthentication == false}" th:href="@{/member/login}"><span
+                <a href="" th:if="${session.loginMember == null}" th:href="@{/member/login}"><span
                     class="menu-text">Login</span></a>
               </li>
               <li>
-                <a href="/login/member_modify_form.php" th:if="${loginAuthentication}"
+                <a href="/login/member_modify_form.php" th:if="${session.loginMember != null}"
                    th:href="@{/member/edit}"><span class="menu-text">정보수정</span></a>
               </li>
               <li>
                 <a href="/board/board_form.php?id=user1"
                    th:href="@{/board/post}"
-                   th:if="${loginAuthentication}"><span class="menu-text">글쓰기</span></a>
+                   th:if="${session.loginMember != null}"><span class="menu-text">글쓰기</span></a>
               </li>
               <li>
-                <a href="/login/logout.php" th:if="${loginAuthentication}"
+                <a href="/login/logout.php" th:if="${session.loginMember != null}"
                    th:href="@{/member/logout}"><span class="menu-text">Logout</span></a>
               </li>
               <li>

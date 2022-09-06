@@ -89,22 +89,20 @@
         <div class="empty_blank2"></div>
 
 
-        <div th:if="${memberCheck == true}">
-          <!--        edit button-->
-          <span>
+        <!--        edit button-->
+        <span>
           <button class="etc_btn" type="button" onclick=""
                   th:onclick="|location.href='@{/board/edit(id=${boardForm.boardId})}'|">수정</button>
         </span>
-          <!--        edit button end-->
+        <!--        edit button end-->
 
-          <!--        delete btn start-->
-          <span>
+        <!--        delete btn start-->
+        <span>
           <button class="etc_btn" type="button" onclick=""
                   th:onclick="|location.href='@{/board/delete(id=${boardForm.boardId})}'|">삭제</button>
 
         </span>
-          <!--        delete btn end-->
-        </div>
+        <!--        delete btn end-->
 
 
         <div class="empty_blank"></div>

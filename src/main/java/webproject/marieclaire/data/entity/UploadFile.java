@@ -13,7 +13,7 @@ public class UploadFile {
 
     private String storeFileName;
 
-    private boolean exist;
+//    private boolean exist;
 
     protected UploadFile() {
 
