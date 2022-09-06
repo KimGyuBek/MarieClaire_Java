@@ -108,9 +108,19 @@ public class MemberController {
     /*회원정보 수정*/
     @PostMapping("/edit")
     public String update(
-        @Validated(MemberUpdateCheck.class) @ModelAttribute("memberForm") MemberDto memberDto) {
+        @Validated(MemberUpdateCheck.class) @ModelAttribute("memberForm") MemberDto memberDto,
+        BindingResult bindingResult) {
         memberService.updateMember(memberDto);
+
         /*TODO 비밀번호 일치 확인*/
+        if (memberDto.getPwd() != memberDto.getPwdChk()) {
+            bindingResult.reject("패스워드 불일치");
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "member/edit";
+        }
+
         return "redirect:/";
     }
 

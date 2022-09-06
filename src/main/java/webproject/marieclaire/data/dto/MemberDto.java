@@ -25,6 +25,9 @@ public class MemberDto {
     @NotBlank(groups = {LoginCheck.class, JoinCheck.class, MemberUpdateCheck.class})
     private String pwd;
 
+    @NotNull(groups = {JoinCheck.class, MemberUpdateCheck.class})
+    private String pwdChk;
+
     @NotBlank(groups = {JoinCheck.class, MemberUpdateCheck.class})
     private String userName;
 
