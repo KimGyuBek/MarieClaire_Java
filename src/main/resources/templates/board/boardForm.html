@@ -43,7 +43,6 @@
           <form name="memFrm" method="POST"
                 action="" th:object="${boardForm}" enctype="multipart/form-data">
             <!--              <input type="hidden" name="id" value="<?= $id ?>">-->
-            <!--              TODO input id-->
             <input type="hidden" th:field="*{editor.userId}">
             <input type="hidden" th:field="*{editor.pwd}">
             <input type="hidden" th:field="*{editor.userEmail}">

@@ -99,7 +99,6 @@ public class BoardController {
         log.info("[post]boardDto={}", boardDto.toString());
 
         Long uploadId = boardService.upload(boardDto);
-//        TODO boardID를 return 해줘야겠다
 
         return "redirect:/board/view?id=" + uploadId;
     }
@@ -111,7 +110,6 @@ public class BoardController {
     /*board_view*/
     @GetMapping("/view")
     public String boardViewForm(@RequestParam("id") Long id, Model model) {
-//        TODO boadrId 경로를 pathVariable로 바꾸는게 좋을수도
         BoardDto boardDto = boardService.findById(id);
         log.info("[boardController] boardDto={}", boardDto);
 

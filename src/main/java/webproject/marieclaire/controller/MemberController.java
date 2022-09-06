@@ -38,9 +38,7 @@ public class MemberController {
     public String loginForm(HttpServletRequest request, HttpServletResponse response,
         @ModelAttribute("loginForm") MemberDto memberDto) {
 
-//        String referer = request.getHeader("referer");
-        String requestURI = request.getRequestURI();
-//        log.info("[memberLogin] requestUri={}", requestURI);
+        String referer = request.getHeader("referer");
 
         return "member/loginForm";
     }
@@ -52,6 +50,9 @@ public class MemberController {
         @RequestParam(value = "redirect", defaultValue = "/") String redirectUri,
         HttpServletRequest request, HttpServletResponse response,
         RedirectAttributes redirectAttributes) {
+
+//        String referer = (String) request.getAttribute("referer");
+//        log.info("[login] referer={}", referer);
 
         if (bindingResult.hasErrors()) {
             return "member/loginForm";
@@ -72,8 +73,6 @@ public class MemberController {
             return "error/member-error";
         }
 
-//        redirectAttributes.addAttribute("login", true);
-
         return "redirect:" + redirectUri;
 //        return "redirect:/";
     }
@@ -81,8 +80,7 @@ public class MemberController {
 
     /*로그아웃*/
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request,
-        @RequestParam(value = "redirectUri", defaultValue = "/") String redirectUri) {
+    public String logout(HttpServletRequest request) {
 
         String referer = request.getHeader("referer");
 
@@ -109,7 +107,7 @@ public class MemberController {
     @PostMapping("/edit")
     public String update(
         @Validated(MemberUpdateCheck.class) @ModelAttribute("memberForm") MemberDto memberDto,
-        BindingResult bindingResult) {
+        BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         memberService.updateMember(memberDto);
 
         /*TODO 비밀번호 일치 확인*/
@@ -118,7 +116,7 @@ public class MemberController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "member/edit";
+            return "redirect:/member/edit";
         }
 
         return "redirect:/";
