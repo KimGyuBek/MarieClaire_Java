@@ -51,9 +51,6 @@ public class MemberController {
         HttpServletRequest request, HttpServletResponse response,
         RedirectAttributes redirectAttributes) {
 
-//        String referer = (String) request.getAttribute("referer");
-//        log.info("[login] referer={}", referer);
-
         if (bindingResult.hasErrors()) {
             return "member/loginForm";
         }
@@ -68,13 +65,10 @@ public class MemberController {
             session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         } catch (IllegalStateException e) {
             log.info("[login] illegalStateException");
-//            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-//            e.printStackTrace();
             return "error/member-error";
         }
 
         return "redirect:" + redirectUri;
-//        return "redirect:/";
     }
 
 
@@ -110,7 +104,9 @@ public class MemberController {
         BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         memberService.updateMember(memberDto);
 
-        /*TODO 비밀번호 일치 확인*/
+
+
+        /*pwd 일치 여부 확인*/
         if (memberDto.getPwd() != memberDto.getPwdChk()) {
             bindingResult.reject("패스워드 불일치");
         }
