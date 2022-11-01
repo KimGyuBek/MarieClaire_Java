@@ -9,6 +9,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import webproject.marieclaire.data.entity.UploadFile;
 
+/**
+ * class : FileStore.class
+ * 파일 업로드 로직 수행
+ */
+
 @Component
 @Slf4j
 public class FileStore {
@@ -27,10 +32,7 @@ public class FileStore {
 
         try {
             multipartFile.transferTo(new File(getFullPath(storeFileName)));
-
-
         } catch (IOException e) {
-
             e.printStackTrace();
         }
 
@@ -38,7 +40,6 @@ public class FileStore {
     }
 
     public String getFullPath(String storeFileName) {
-
         return fileDir + storeFileName;
     }
 

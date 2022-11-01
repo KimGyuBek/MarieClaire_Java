@@ -35,7 +35,6 @@ import webproject.marieclaire.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
 
-
     private final FileStore fileStore;
     private final BoardService boardService;
 
@@ -79,7 +78,6 @@ public class BoardController {
         HttpServletRequest request) {
         boardDto.setEditor(
             (MemberDto) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER));
-
         log.info("[get]boardDto={}", boardDto.toString());
 
         return "board/boardForm";
@@ -118,7 +116,6 @@ public class BoardController {
         return "board/board_view";
     }
 
-
     /**
      * 게시글 수정
      */
@@ -147,9 +144,7 @@ public class BoardController {
         redirectAttributes.addAttribute("id", boardDto.getBoardId());
 
         return "redirect:/board/view";
-
     }
-
 
     /**
      * 게시글 삭제
@@ -158,10 +153,7 @@ public class BoardController {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
-
         return "redirect:/board/list/fashion";
-
     }
-
 
 }

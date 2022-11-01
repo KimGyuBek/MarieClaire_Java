@@ -34,6 +34,7 @@ public class MemberController {
     private final MemberService memberService;
 
     /*loginForm*/
+    /*(/member/login)*/
     @GetMapping("/login")
     public String loginForm(HttpServletRequest request, HttpServletResponse response,
         @ModelAttribute("loginForm") MemberDto memberDto) {
@@ -44,6 +45,7 @@ public class MemberController {
     }
 
     /*로그인 */
+    /*(/member/login)*/
     @PostMapping("/login")
     public String login(@Validated() @ModelAttribute("loginForm") MemberDto memberDto,
         BindingResult bindingResult,
@@ -68,11 +70,16 @@ public class MemberController {
             return "error/member-error";
         }
 
+        /*TODO login시 alert 구현*/
+
+//
+
         return "redirect:" + redirectUri;
     }
 
 
     /*로그아웃*/
+    /*(/member/logout)*/
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
 
@@ -85,6 +92,7 @@ public class MemberController {
 
 
     /*회원정보 수정페이지*/
+    /*(/member/edit)*/
     @GetMapping("/edit")
     public String updateForm(HttpServletRequest request, Model model) {
 
@@ -98,6 +106,7 @@ public class MemberController {
     }
 
     /*회원정보 수정*/
+    /*(/member/edit)*/
     @PostMapping("/edit")
     public String update(
         @Validated(MemberUpdateCheck.class) @ModelAttribute("memberForm") MemberDto memberDto,
@@ -123,12 +132,14 @@ public class MemberController {
      */
 
     /*회원 가입 form*/
+    /*(/member/join)*/
     @GetMapping("/join")
     public String joinForm(@ModelAttribute("joinForm") MemberDto memberDto) {
         return "member/joinForm";
     }
 
     /*회원가입*/
+    /*(/member/join)*/
     @PostMapping("/join")
     public String join(@Validated @ModelAttribute("joinForm") MemberDto memberDto,
         BindingResult bindingResult, RedirectAttributes redirectAttributes) {
